@@ -1,0 +1,15 @@
+<div *ngIf="recipe">
+  nombre: {{ recipe.name }}
+  <br />
+  ingredientes :{{ getIngredients(recipe) }}
+  <br />
+  pasos:{{ recipe.steps }}
+  <br />
+  alergenos: {{ getAlergens(recipe) }}
+  <br />
+  imagen<img src="/assets/{{recipe.img}}" />
+  <br />
+  favortio{{ recipe.isFav ? 'si' : 'no'}}
+  <br />
+  <button (click)="back()">volver</button>
+</div>

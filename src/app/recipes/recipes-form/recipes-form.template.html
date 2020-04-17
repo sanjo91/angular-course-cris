@@ -1,0 +1,46 @@
+<form [formGroup]="formGroup">
+  <label>nombre</label>
+  <input type="string" formControlName="name" />
+  <br />
+  <label>comensales</label>
+  <input type="number" formControlName="comensales" />
+  <br />
+  ingredientes:
+  <div *ngFor="let ingridient of getIngridients()">
+    <label>ingrediente</label>
+    <input formControlName="ingridient_{{ ingridient.id }}_name" type="string" />
+    <label>cantidad</label>
+    <input formControlName="ingridient_{{ ingridient.id }}_quantity" type="number" />
+    <label>unidad</label>
+    <select>
+      <option *ngFor="let u of units">{{ u }}</option>
+    </select>
+    <button (click)="removeIngridient(ingridient.id)">Eliminar</button>
+  </div>
+  <br />
+  <div>
+    <label>ingrediente</label>
+    <input formControlName="new_ingridient_name" type="string" />
+    <label>cantidad</label>
+    <input formControlName="new_ingridient_quantity" type="number" />
+    <label>unidad</label>
+    <select formControlName="new_ingridient_unit">
+      <option [value]="u" *ngFor="let u of units">{{ u }}</option>
+    </select>
+    <button (click)="addIngridient()">añadir</button>
+  </div>
+  <br />
+  <label>pasos</label>
+  <textarea formControlName="steps"></textarea>
+  <br />
+  <div>alergenos: {{getSelectedAlergens() }}</div>
+  <select formControlName="alergen">
+    <option value="-1">selecciona</option>
+    <option [value]="a.id" *ngFor="let a of getAlergens()">
+      {{ a.name }}
+    </option>
+  </select>
+  <button (click)="addAlergen()">añadir alergeno</button>
+  <br />
+  <button (click)="send()">Aceptar</button>
+</form>

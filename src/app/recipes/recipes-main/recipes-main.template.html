@@ -1,0 +1,52 @@
+<div>
+  <table>
+    <thead>
+      <th>nombre</th>
+      <th>ingredientes</th>
+      <th>pasos</th>
+      <th>alergenos</th>
+      <th>imagen</th>
+      <th>favorita</th>
+      <th>editar</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let recipe of recipes">
+        <td (click)="detail(recipe)">{{ recipe.name }}</td>
+        <td>{{ getIngredients(recipe) }}</td>
+        <td>{{ recipe.steps }}</td>
+        <td>{{ getAlergens(recipe) }}</td>
+        <td><img src="/assets/{{recipe.img}}" /></td>
+        <td (click)="toggle(recipe)">{{ recipe.isFav }}</td>
+        <td (click)="edit(recipe)">editar</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+favoritas
+<div>
+  <table>
+    <thead>
+      <th>nombre</th>
+      <th>ingredientes</th>
+      <th>pasos</th>
+      <th>alergenos</th>
+      <th>imagen</th>
+      <th>favorita</th>
+      <th>editar</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let recipe of favRecipes">
+        <td>{{ recipe.name }}</td>
+        <td>{{ getIngredients(recipe) }}</td>
+        <td>{{ recipe.steps }}</td>
+        <td>{{ getAlergens(recipe) }}</td>
+        <td><img src="/assets/{{recipe.img}}" /></td>
+        <td>{{ recipe.isFav }}</td>
+        <td><a [routerLink]="['/recipes/edit/'+ recipe.id]">edit</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-recipes-form></app-recipes-form>
